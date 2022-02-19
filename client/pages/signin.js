@@ -27,8 +27,9 @@ const SignIn = () => {
         toast.error(data.error);
         setLoading(false);
       } else {
-        console.log(data);
-        // router.push("/")
+        setLoading(false);
+        localStorage.setItem("auth", JSON.stringify(data));
+        router.push("/");
       }
     } catch (err) {
       console.log(err);
