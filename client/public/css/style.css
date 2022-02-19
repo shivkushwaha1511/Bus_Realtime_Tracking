@@ -1,0 +1,21 @@
+.red_pill {
+  background-color: #ee5060;
+}
+
+.form_bg {
+  width: 100%;
+  height: auto;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url("/images/school_bus.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.form_top {
+  height: 10px;
+}
