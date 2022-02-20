@@ -4,3 +4,4 @@ client/public/images/
 server/node_modules/
 server/.env
 client/.env.local
+ToDo.txt

@@ -24,9 +24,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    bus: {
-      type: Schema.ObjectId,
-      ref: "Bus",
+    role: {
+      type: String,
+      default: "Subscriber",
+      required: true,
     },
   },
   { timestamps: true }

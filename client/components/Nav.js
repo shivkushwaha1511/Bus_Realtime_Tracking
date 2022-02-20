@@ -37,23 +37,24 @@ const Nav = () => {
               >
                 {state && state.user && state.user.name}
               </a>
-              <ul className="dropdown-menu fw-bold">
-                <li>
-                  <Link href={"/user/profile/update"}>
-                    <a
-                      className={`dropdown-item fw-bold ${
-                        current === "/user/profile/update" &&
-                        "active bg-danger text-white"
-                      }`}
-                    >
-                      Profile
-                    </a>
-                  </Link>
-                </li>
+              <ul className="dropdown-menu">
+                {state && state.user && state.user.role === "Admin" && (
+                  <li>
+                    <Link href={"/admin"}>
+                      <a
+                        className={`nav-link text-dark dropdown-item fw-bold ${
+                          current === "/admin" && "active bg-danger text-white"
+                        }`}
+                      >
+                        Admin
+                      </a>
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <Link href={"/user/dashboard"}>
                     <a
-                      className={`dropdown-item fw-bold ${
+                      className={`nav-link text-dark dropdown-item fw-bold ${
                         current === "/user/dashboard" &&
                         "active bg-danger text-white"
                       }`}
@@ -63,7 +64,22 @@ const Nav = () => {
                   </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item fw-bold" onClick={logout}>
+                  <Link href={"/user/profile/update"}>
+                    <a
+                      className={`nav-link text-dark dropdown-item fw-bold ${
+                        current === "/user/profile/update" &&
+                        "active bg-danger text-white"
+                      }`}
+                    >
+                      Profile
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    className="nav-link text-dark dropdown-item fw-bold"
+                    onClick={logout}
+                  >
                     Logout
                   </a>
                 </li>
