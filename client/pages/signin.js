@@ -14,6 +14,10 @@ const SignIn = () => {
 
   const router = useRouter();
 
+  if (state && state.user) {
+    router.push("/user/dashboard");
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(email, password);

@@ -1,9 +1,11 @@
 import { Modal } from "antd";
 import axios from "axios";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AuthForm from "../components/form/AuthForm";
 import { toast } from "react-toastify";
+import { UserContext } from "../context";
+import { useRouter } from "next/router";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -12,6 +14,13 @@ const SignUp = () => {
   const [secret, setSecret] = useState("");
   const [ok, setOk] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [state] = useContext(UserContext);
+
+  const router = useRouter();
+
+  if (state && state.user) {
+    router.push("/user/dashboard");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

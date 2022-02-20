@@ -94,3 +94,8 @@ export const signIn = async (req, res) => {
     res.json({ error: "Error! Try again" });
   }
 };
+
+// Verifying user for accessing pages
+export const currentUser = (req, res) => {
+  res.json({ ok: true });
+};
