@@ -24,7 +24,7 @@ const SignIn = () => {
 
     setLoading(true);
     try {
-      const { data } = await axios.post("http://localhost:8000/api/signin", {
+      const { data } = await axios.post("/signin", {
         email,
         password,
       });
@@ -36,7 +36,7 @@ const SignIn = () => {
         setLoading(false);
         setState(data);
         localStorage.setItem("auth", JSON.stringify(data));
-        router.push("/");
+        router.push("/user/dashboard");
       }
     } catch (err) {
       console.log(err);

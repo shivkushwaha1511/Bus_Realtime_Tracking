@@ -18,14 +18,7 @@ const UserRoute = ({ children }) => {
 
   const getCurrentUser = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:8000/api/current-user",
-        {
-          headers: {
-            Authorization: `Bearer ${state.token}`,
-          },
-        }
-      );
+      const { data } = await axios.get("/current-user");
 
       if (data.ok) setOk(true);
     } catch (err) {
