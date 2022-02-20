@@ -1,14 +1,16 @@
 import axios from "axios";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AuthForm from "../components/form/AuthForm";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import { UserContext } from "../context";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [state, setState] = useContext(UserContext);
 
   const router = useRouter();
 
@@ -28,6 +30,7 @@ const SignIn = () => {
         setLoading(false);
       } else {
         setLoading(false);
+        setState(data);
         localStorage.setItem("auth", JSON.stringify(data));
         router.push("/");
       }

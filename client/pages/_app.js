@@ -3,13 +3,16 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Nav from "../components/Nav";
 import "antd/dist/antd.css";
+import { UserProvider } from "../context";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Nav />
-      <Component {...pageProps} />
-      <ToastContainer />
+      <UserProvider>
+        <Nav />
+        <Component {...pageProps} />
+        <ToastContainer />
+      </UserProvider>
     </>
   );
 }
