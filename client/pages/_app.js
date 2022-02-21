@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
       <UserProvider>
         <Nav />
         <Component {...pageProps} />
-        <ToastContainer />
+        <ToastContainer newestOnTop draggable />
       </UserProvider>
     </>
   );

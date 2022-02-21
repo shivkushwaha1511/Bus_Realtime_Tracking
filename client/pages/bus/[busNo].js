@@ -1,30 +1,32 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BusForm from "../../components/form/BusForm";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { RollbackOutlined } from "@ant-design/icons";
 
-const add = () => {
-  const [busNo, setBusNo] = useState("");
-  const [name, setName] = useState("");
-  const [contact, setContact] = useState("");
+const update = (data) => {
+  const [busNo, setBusNo] = useState(data.busNo);
+  const [name, setName] = useState(data.name);
+  const [contact, setContact] = useState(data.contact);
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const { data } = await axios.post("/add-bus", {
+      const res = await axios.put(`/update-bus/${data._id}`, {
         busNo,
         name,
         contact,
       });
-      if (data.error) {
-        toast.error(data.error);
-      } else {
-        toast.success("Bus added");
+
+      if (res.data.ok) {
+        toast.success("Bus details updated");
         router.push("/admin");
+      } else {
+        toast.error(res.error);
       }
     } catch (err) {
       console.log(err);
@@ -36,7 +38,7 @@ const add = () => {
       <div className="row">
         <div className="col py-4 text-center">
           <p className="fs-1" style={{ margin: "0px" }}>
-            <u>Add bus details</u>
+            <u>Update bus details</u>
           </p>
         </div>
       </div>
@@ -60,4 +62,10 @@ const add = () => {
   );
 };
 
-export default add;
+export async function getServerSideProps(context) {
+  const { data } = await axios.get(`/bus-by-busNo/${context.params.busNo}`);
+
+  return { props: data };
+}
+
+export default update;
