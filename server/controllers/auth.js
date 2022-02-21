@@ -99,3 +99,8 @@ export const signIn = async (req, res) => {
 export const currentUser = (req, res) => {
   res.json({ ok: true });
 };
+
+// Verifying admin for accessing pages
+export const currentAdmin = (req, res) => {
+  res.json({ ok: true });
+};

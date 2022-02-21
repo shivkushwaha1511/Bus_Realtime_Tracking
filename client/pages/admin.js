@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import BusList from "../components/lists/BusList";
 import { UserContext } from "../context";
 import { toast } from "react-toastify";
+import AdminRoute from "../components/routes/AdminRoute";
 
 const admin = () => {
   const [state] = useContext(UserContext);
@@ -43,25 +44,27 @@ const admin = () => {
   };
 
   return (
-    <div className="container px-3">
-      <div className="row">
-        <div className="col d-flex justify-content-end pt-3">
-          <Link href="/bus/add">
-            <a className="btn btn-danger fs-5 fw-bold">Add bus</a>
-          </Link>
+    <AdminRoute>
+      <div className="container px-3">
+        <div className="row">
+          <div className="col d-flex justify-content-end pt-3">
+            <Link href="/bus/add">
+              <a className="btn btn-danger fs-5 fw-bold">Add bus</a>
+            </Link>
+          </div>
+        </div>
+        <div className="row py-3">
+          <div className="col-md-6 offset-md-3">
+            {buses &&
+              buses.map((bus) => (
+                <div key={bus._id} className="mb-3">
+                  <BusList bus={bus} handleDelete={handleDelete} />
+                </div>
+              ))}
+          </div>
         </div>
       </div>
-      <div className="row py-3">
-        <div className="col-md-6 offset-md-3">
-          {buses &&
-            buses.map((bus) => (
-              <div key={bus._id} className="mb-3">
-                <BusList bus={bus} handleDelete={handleDelete} />
-              </div>
-            ))}
-        </div>
-      </div>
-    </div>
+    </AdminRoute>
   );
 };
 
