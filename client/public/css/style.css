@@ -19,3 +19,12 @@
 .form_top {
   height: 10px;
 }
+
+.home_bg {
+  width: 100%;
+  height: 610px;
+  background-image: url("/images/home.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}

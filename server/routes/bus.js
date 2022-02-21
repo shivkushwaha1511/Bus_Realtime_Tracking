@@ -5,6 +5,7 @@ import {
   deleteBus,
   busByBusno,
   updateBus,
+  setCoordinates,
 } from "../controllers/bus";
 
 const router = express.Router();
@@ -16,5 +17,7 @@ router.get("/get-bus", getBus);
 router.delete("/delete-bus/:_id", requireSignin, isAdmin, deleteBus);
 router.get("/bus-by-busNo/:busNo", busByBusno);
 router.put("/update-bus/:_id", requireSignin, isAdmin, updateBus);
+
+router.get("/set-coordinates", setCoordinates);
 
 module.exports = router;

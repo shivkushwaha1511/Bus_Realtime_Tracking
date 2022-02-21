@@ -9,8 +9,6 @@ import {
 
 const defaultCenter = { lat: 23.20104034367859, lng: 79.88102018465851 };
 
-// const defaultOptions = { scrollwheel: false };
-
 const RegularMap = withScriptjs(
   withGoogleMap((props) => {
     const [dir, setDir] = useState({});
@@ -18,7 +16,7 @@ const RegularMap = withScriptjs(
 
     DirectionsService.route(
       {
-        origin: new google.maps.LatLng(23.20812064966523, 79.95080745044908),
+        origin: defaultCenter,
         destination: new google.maps.LatLng(props.data.lat, props.data.lng),
         travelMode: "DRIVING",
       },
@@ -38,25 +36,22 @@ const RegularMap = withScriptjs(
             options={{ suppressMarkers: true }}
           />
         )}
-        <Marker
-          defaultIcon="/images/bus.png"
-          position={{ lat: 23.20812064966523, lng: 79.95080745044908 }}
-        />
-        <Marker defaultIcon="/images/college.png" position={props.data} />
+        <Marker defaultIcon="/images/bus.png" position={props.data} />
+        <Marker defaultIcon="/images/college.png" position={defaultCenter} />
       </GoogleMap>
     );
   })
 );
 
 const loadingElementStyle = { height: "100%" };
-const containerElementStyle = { height: "460px" };
+const containerElementStyle = { height: "420px" };
 const mapElementStyle = { height: "100%" };
 
 export default function GoogleMaps(data) {
   return (
     <RegularMap
       data={data}
-      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1bkRI50Qsyh7tmUlZsgHkqEz3uiaEp6w"
+      googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_MAP_API}`}
       loadingElement={<div style={loadingElementStyle} />}
       containerElement={<div style={containerElementStyle} />}
       mapElement={<div style={mapElementStyle} />}

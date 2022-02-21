@@ -28,7 +28,10 @@ const dashboard = ({ data }) => {
                   data.map((bus) => <option key={bus._id}>{bus.busNo}</option>)}
               </select>
               <div className="text-center mt-4">
-                <button className="btn btn-danger" onClick={handleSubmit}>
+                <button
+                  className="btn btn-danger fs-5 fw-bold"
+                  onClick={handleSubmit}
+                >
                   Get location
                 </button>
               </div>

@@ -89,3 +89,15 @@ export const updateBus = async (req, res) => {
     res.json({ error: "Error! try again" });
   }
 };
+
+export const setCoordinates = async (req, res) => {
+  const { lat, lng, busNo } = req.query;
+
+  try {
+    const bus = await Bus.findOne({ busNo });
+    await Bus.findByIdAndUpdate(bus._id, { latitude: lat, longitude: lng });
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+  }
+};
