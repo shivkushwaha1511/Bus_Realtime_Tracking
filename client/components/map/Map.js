@@ -5,7 +5,9 @@ import {
   GoogleMap,
   Marker,
   DirectionsRenderer,
+  InfoWindow,
 } from "react-google-maps";
+import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
 
 const defaultCenter = { lat: 23.20104034367859, lng: 79.88102018465851 };
 
@@ -13,11 +15,14 @@ const RegularMap = withScriptjs(
   withGoogleMap((props) => {
     const [dir, setDir] = useState({});
     const DirectionsService = new google.maps.DirectionsService();
-
+    const [open, setOpen] = useState(false);
     DirectionsService.route(
       {
-        origin: defaultCenter,
-        destination: new google.maps.LatLng(props.data.lat, props.data.lng),
+        origin: new google.maps.LatLng(
+          props.data.latitude,
+          props.data.longitude
+        ),
+        destination: defaultCenter,
         travelMode: "DRIVING",
       },
       (result, status) => {
@@ -28,6 +33,7 @@ const RegularMap = withScriptjs(
         }
       }
     );
+
     return (
       <GoogleMap defaultZoom={12} defaultCenter={defaultCenter}>
         {dir.directions && (
@@ -36,7 +42,35 @@ const RegularMap = withScriptjs(
             options={{ suppressMarkers: true }}
           />
         )}
-        <Marker defaultIcon="/images/bus.png" position={props.data} />
+        {open && (
+          <InfoWindow
+            onCloseClick={() => setOpen(false)}
+            position={
+              new google.maps.LatLng(props.data.latitude, props.data.longitude)
+            }
+          >
+            <>
+              <div className="fw-bold fs-5 mb-1">{props.data.busNo}</div>
+              <div className="fw-bold mb-1">
+                <UserOutlined className="fs-5 me-2" />
+                {props.data.name}
+              </div>
+              <div className="fw-bold">
+                <PhoneOutlined className="fs-5 me-2" />
+                {props.data.contact}
+              </div>
+            </>
+          </InfoWindow>
+        )}
+        <Marker
+          defaultIcon="/images/bus.png"
+          position={
+            new google.maps.LatLng(props.data.latitude, props.data.longitude)
+          }
+          onClick={() => {
+            setOpen(true);
+          }}
+        />
         <Marker defaultIcon="/images/college.png" position={defaultCenter} />
       </GoogleMap>
     );

@@ -12,7 +12,7 @@ const bus = (data) => {
         <div className="row">
           <div className="col pt-4">
             <h2>Current location</h2>
-            {GoogleMaps({ lat: data.latitude, lng: data.longitude })}
+            {GoogleMaps(data)}
             <div className="text-center my-3">
               <RollbackOutlined
                 className="fs-4"
