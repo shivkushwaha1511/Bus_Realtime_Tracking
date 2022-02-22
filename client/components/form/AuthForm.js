@@ -12,7 +12,7 @@ const AuthForm = ({
   secret,
   setSecret,
   page,
-  updatePage,
+  updatePage = false,
 }) => (
   <form className="px-4 py-3" onSubmit={handleSubmit}>
     {page !== "signin" && (
@@ -35,13 +35,12 @@ const AuthForm = ({
         className="form-control"
         placeholder="Enter your email"
         onChange={(e) => setEmail(e.target.value)}
-        // disabled={updatePage}
+        disabled={updatePage}
       />
     </div>
     <div className="form-group mt-3">
       <label className="fw-bold">
-        {/* {updatePage ? "New password" : "Password"} */}
-        Password
+        {updatePage ? "New password" : "Password"}
       </label>
       <input
         value={password}
@@ -52,7 +51,7 @@ const AuthForm = ({
       />
     </div>
 
-    {page !== "signin" && (
+    {!updatePage && page !== "signin" && (
       <>
         <div className="form-group mt-3">
           <label className="fw-bold">Pick a question</label>

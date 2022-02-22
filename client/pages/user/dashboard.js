@@ -15,7 +15,7 @@ const dashboard = ({ data }) => {
   return (
     <>
       <UserRoute>
-        <div className="container-fluid">
+        <div className="container-fluid dash">
           <div className="row" style={{ paddingTop: "150px" }}>
             <div className="col-md-6 offset-md-3 px-5">
               <div className="fs-4 ps-2">Select your bus number</div>

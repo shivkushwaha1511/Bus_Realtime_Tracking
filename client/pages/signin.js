@@ -75,6 +75,11 @@ const SignIn = () => {
                     <a className="text-danger fw-bold">SignUp</a>
                   </Link>
                 </p>
+                <p className="text-center">
+                  <Link href="/forgot-password">
+                    <a className="text-danger fw-bold">Forgot password?</a>
+                  </Link>
+                </p>
               </div>
             </div>
           </div>

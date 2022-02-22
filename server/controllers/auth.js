@@ -104,3 +104,71 @@ export const currentUser = (req, res) => {
 export const currentAdmin = (req, res) => {
   res.json({ ok: true });
 };
+
+// Update profile
+export const updateProfile = async (req, res) => {
+  const { name, password } = req.body;
+  const data = {};
+
+  if (password) {
+    if (password.length < 6) {
+      return res.json({ error: "Password must be 6 characters long" });
+    } else {
+      data.password = await hashPassword(password);
+    }
+  }
+
+  if (name) {
+    data.name = name;
+  }
+  try {
+    const user = await User.findByIdAndUpdate(req.user._id, data, {
+      new: true,
+    });
+
+    user.password = undefined;
+    user.secret = undefined;
+
+    return res.json(user);
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: "Error! Try again" });
+  }
+};
+
+export const forgotPassword = async (req, res) => {
+  const { email, newPassword, secret } = req.body;
+
+  //Validation
+  if (!newPassword && newPassword.length < 6) {
+    return res.json({
+      error: "New password is required and minimum 6 characters long",
+    });
+  }
+
+  if (!secret) {
+    return res.json({
+      error: "Secret is required",
+    });
+  }
+
+  const user = await User.findOne({ email, secret });
+  if (!user) {
+    return res.json({
+      error: "We can't verify you with these credentials",
+    });
+  }
+
+  try {
+    const hashed = await hashPassword(newPassword);
+    await User.findByIdAndUpdate(user._id, { password: hashed });
+    return res.json({
+      success: "Congrats! Now you can login with your new password",
+    });
+  } catch (err) {
+    console.log(err);
+    return res.json({
+      error: "Something wrong! Try again",
+    });
+  }
+};
