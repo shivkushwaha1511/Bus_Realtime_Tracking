@@ -46,7 +46,7 @@ const SignIn = () => {
 
   return (
     <>
-      <div className="container-fluid form_bg" style={{ height: "561px" }}>
+      <div className="container-fluid">
         <div className="row py-4 px-4">
           <div
             className="col-md-4 my-4 offset-md-4 bg-white shadow-lg"
@@ -84,6 +84,21 @@ const SignIn = () => {
             </div>
           </div>
         </div>
+        <style jsx global>{`
+          body {
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0.8) 100%
+              ),
+              url("/images/school_bus.jpg");
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        `}</style>
       </div>
     </>
   );

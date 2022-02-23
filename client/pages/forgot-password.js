@@ -52,7 +52,7 @@ const ForgotPassword = () => {
   return (
     <>
       <div className="container-fluid form_bg">
-        <div className="row py-4">
+        <div className="row py-4 px-3">
           <div
             className="col-md-4 my-4 offset-md-4 bg-white shadow-lg"
             style={{ padding: "0", borderRadius: "10px 10px 10px 10px" }}
@@ -91,6 +91,21 @@ const ForgotPassword = () => {
           </Link>
         </Modal>
       </div>
+      <style jsx global>{`
+        body {
+          width: 100%;
+          height: 100%;
+          background-image: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0) 0%,
+              rgba(0, 0, 0, 0.8) 100%
+            ),
+            url("/images/school_bus.jpg");
+          background-position: center center;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+      `}</style>
     </>
   );
 };

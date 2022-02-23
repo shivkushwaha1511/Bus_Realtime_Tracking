@@ -52,7 +52,7 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="container-fluid form_bg">
+      <div className="container-fluid form">
         <div className="row py-4 px-4">
           <div
             className="col-md-4 my-4 offset-md-4 bg-white shadow-lg"
@@ -101,6 +101,21 @@ const SignUp = () => {
           </Link>
         </Modal>
       </div>
+      <style jsx global>{`
+        .form {
+          width: 100%;
+          height: 100%;
+          background-image: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0) 0%,
+              rgba(0, 0, 0, 0.8) 100%
+            ),
+            url("/images/school_bus.jpg");
+          background-position: center center;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+      `}</style>
     </>
   );
 };

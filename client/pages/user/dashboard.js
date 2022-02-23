@@ -15,7 +15,7 @@ const dashboard = ({ data }) => {
   return (
     <>
       <UserRoute>
-        <div className="container-fluid dash">
+        <div className="container-fluid">
           <div className="row" style={{ paddingTop: "150px" }}>
             <div className="col-md-6 offset-md-3 px-5">
               <div className="fs-4 ps-2">Select your bus number</div>
@@ -39,6 +39,28 @@ const dashboard = ({ data }) => {
           </div>
         </div>
       </UserRoute>
+      <style jsx global>
+        {`
+          body {
+            height: 100%;
+            background-image: linear-gradient(
+              to left bottom,
+              #ffffff,
+              #ffffff,
+              #ffffff,
+              #ffffff,
+              #ffffff,
+              #faf7fe,
+              #f6eefc,
+              #f5e5f9,
+              #f7cfeb,
+              #fdb9d5,
+              #ffa2b5,
+              #ff8e8e
+            );
+          }
+        `}
+      </style>
     </>
   );
 };

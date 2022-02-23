@@ -2,50 +2,8 @@
   background-color: #ee5060;
 }
 
-.form_bg {
-  width: 100%;
-  height: auto;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.8) 100%
-    ),
-    url("/images/school_bus.jpg");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 .form_top {
   height: 10px;
-}
-
-.home_bg {
-  width: 100%;
-  height: 610px;
-  background-image: url("/images/home.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-
-.dash {
-  height: 610px;
-  background-image: linear-gradient(
-    to left bottom,
-    #ffffff,
-    #ffffff,
-    #ffffff,
-    #ffffff,
-    #ffffff,
-    #faf7fe,
-    #f6eefc,
-    #f5e5f9,
-    #f7cfeb,
-    #fdb9d5,
-    #ffa2b5,
-    #ff8e8e
-  );
 }
 
 .navbar-toggler-icon {
