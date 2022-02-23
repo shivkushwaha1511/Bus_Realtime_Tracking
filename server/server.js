@@ -9,6 +9,16 @@ require("dotenv").config();
 
 const app = express();
 
+// Socket.io setup
+const http = require("http").createServer(app);
+const io = require("socket.io")(http, {
+  cors: {
+    methods: ["GET", "POST"],
+    allowHeaders: ["content-type"],
+  },
+});
+global.io = io;
+
 // Database Connection
 mongoose
   .connect(process.env.DATABASE)
@@ -27,6 +37,12 @@ app.use(morgan("dev"));
 
 readdirSync("./routes").map((r) => app.use("/api", require(`./routes/${r}`)));
 
+io.on("connect", (socket) => {
+  socket.on("join", function (data) {
+    socket.join(data.busNo); // We are using room of socket io
+  });
+});
+
 const PORT = process.env.PORT || 8000;
 
-app.listen(PORT, () => console.log("Server running"));
+http.listen(PORT, () => console.log("Server running"));

@@ -22,7 +22,7 @@ const NavBar = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-danger d-flex py-1 pt-1">
-        <div class="container-fluid">
+        <div className="container-fluid">
           <Link href="/">
             <a className="navbar-brand text-white fs-2 fw-bold hover_eff">
               Bus Tracker

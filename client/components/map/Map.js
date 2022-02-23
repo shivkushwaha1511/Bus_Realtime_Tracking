@@ -16,20 +16,25 @@ const RegularMap = withScriptjs(
     const [dir, setDir] = useState({});
     const DirectionsService = new google.maps.DirectionsService();
     const [open, setOpen] = useState(false);
+
+    const cord = {};
+    cord.lat = props.data.latitude;
+    cord.lng = props.data.longitude;
+
+    const [coord, setCoord] = useState(cord);
+    props.socket.on("new_coordinates", (response) => {
+      setCoord(response);
+    });
+
     DirectionsService.route(
       {
-        origin: new google.maps.LatLng(
-          props.data.latitude,
-          props.data.longitude
-        ),
+        origin: new google.maps.LatLng(coord.lat, coord.lng),
         destination: defaultCenter,
         travelMode: "DRIVING",
       },
       (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
           setDir({ directions: result });
-        } else {
-          console.error(`error fetching directions ${result}`);
         }
       }
     );
@@ -45,9 +50,7 @@ const RegularMap = withScriptjs(
         {open && (
           <InfoWindow
             onCloseClick={() => setOpen(false)}
-            position={
-              new google.maps.LatLng(props.data.latitude, props.data.longitude)
-            }
+            position={new google.maps.LatLng(coord.lat, coord.lng)}
           >
             <>
               <div className="fw-bold fs-5 mb-1">{props.data.busNo}</div>
@@ -64,9 +67,7 @@ const RegularMap = withScriptjs(
         )}
         <Marker
           defaultIcon="/images/bus.png"
-          position={
-            new google.maps.LatLng(props.data.latitude, props.data.longitude)
-          }
+          position={new google.maps.LatLng(coord.lat, coord.lng)}
           onClick={() => {
             setOpen(true);
           }}
@@ -81,9 +82,10 @@ const loadingElementStyle = { height: "100%" };
 const containerElementStyle = { height: "420px" };
 const mapElementStyle = { height: "100%" };
 
-export default function GoogleMaps(data) {
+export default function GoogleMaps(data, socket) {
   return (
     <RegularMap
+      socket={socket}
       data={data}
       googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_MAP_API}`}
       loadingElement={<div style={loadingElementStyle} />}

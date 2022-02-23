@@ -97,6 +97,9 @@ export const setCoordinates = async (req, res) => {
     const bus = await Bus.findOne({ busNo });
     await Bus.findByIdAndUpdate(bus._id, { latitude: lat, longitude: lng });
     res.sendStatus(200);
+
+    // emit to server using socket.io
+    global.io.in(busNo).emit("new_coordinates", { lat, lng });
   } catch (err) {
     console.log(err);
   }
