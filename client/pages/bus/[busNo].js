@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { RollbackOutlined } from "@ant-design/icons";
 import AdminRoute from "../../components/routes/AdminRoute";
+import Head from "next/head";
 
 const update = (data) => {
   const [busNo, setBusNo] = useState(data.busNo);
@@ -34,8 +35,27 @@ const update = (data) => {
     }
   };
 
+  const head = () => (
+    <Head>
+      <title>Realtime Bus Tracking-Edit Bus</title>
+      <meta name="description" content="Track your bus location in realtime" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="realtime-bus-tracking" />
+      <meta property="og:url" content={process.env.NEXT_PUBLIC_CLIENT} />
+      <meta
+        property="og:description"
+        content="Track your bus location in realtime"
+      />
+      <meta
+        property="og:image:secure_url"
+        content={`${process.env.NEXT_PUBLIC_CLIENT}/images/school_bus.jpg`}
+      />
+    </Head>
+  );
+
   return (
     <AdminRoute>
+      {head()}
       <div className="container">
         <div className="row">
           <div className="col py-4 text-center">

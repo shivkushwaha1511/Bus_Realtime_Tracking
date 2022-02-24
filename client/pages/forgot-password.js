@@ -49,8 +49,27 @@ const ForgotPassword = () => {
     }
   };
 
+  const head = () => (
+    <Head>
+      <title>Realtime Bus Tracking-Forgot Password</title>
+      <meta name="description" content="Track your bus location in realtime" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="realtime-bus-tracking" />
+      <meta property="og:url" content={process.env.NEXT_PUBLIC_CLIENT} />
+      <meta
+        property="og:description"
+        content="Track your bus location in realtime"
+      />
+      <meta
+        property="og:image:secure_url"
+        content={`${process.env.NEXT_PUBLIC_CLIENT}/images/school_bus.jpg`}
+      />
+    </Head>
+  );
+
   return (
     <>
+      {head()}
       <div className="container-fluid form_bg">
         <div className="row py-4 px-3">
           <div

@@ -5,6 +5,7 @@ import BusList from "../components/lists/BusList";
 import { UserContext } from "../context";
 import { toast } from "react-toastify";
 import AdminRoute from "../components/routes/AdminRoute";
+import Head from "next/head";
 
 const admin = () => {
   const [state] = useContext(UserContext);
@@ -43,8 +44,27 @@ const admin = () => {
     }
   };
 
+  const head = () => (
+    <Head>
+      <title>Realtime Bus Tracking-Admin</title>
+      <meta name="description" content="Track your bus location in realtime" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="realtime-bus-tracking" />
+      <meta property="og:url" content={process.env.NEXT_PUBLIC_CLIENT} />
+      <meta
+        property="og:description"
+        content="Track your bus location in realtime"
+      />
+      <meta
+        property="og:image:secure_url"
+        content={`${process.env.NEXT_PUBLIC_CLIENT}/images/school_bus.jpg`}
+      />
+    </Head>
+  );
+
   return (
     <AdminRoute>
+      {head()}
       <div className="container px-3">
         <div className="row">
           <div className="col d-flex justify-content-end pt-3">

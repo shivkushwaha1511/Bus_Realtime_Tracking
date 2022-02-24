@@ -6,6 +6,8 @@ import AuthForm from "../../../components/form/AuthForm";
 import { toast } from "react-toastify";
 import { UserContext } from "../../../context";
 import { useRouter } from "next/router";
+import Head from "next/head";
+import UserRoute from "../../../components/routes/UserRoute";
 
 const update = () => {
   const [state, setState] = useContext(UserContext);
@@ -54,8 +56,27 @@ const update = () => {
     }
   };
 
+  const head = () => (
+    <Head>
+      <title>Realtime Bus Tracking-Profile</title>
+      <meta name="description" content="Track your bus location in realtime" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="realtime-bus-tracking" />
+      <meta property="og:url" content={process.env.NEXT_PUBLIC_CLIENT} />
+      <meta
+        property="og:description"
+        content="Track your bus location in realtime"
+      />
+      <meta
+        property="og:image:secure_url"
+        content={`${process.env.NEXT_PUBLIC_CLIENT}/images/school_bus.jpg`}
+      />
+    </Head>
+  );
+
   return (
-    <>
+    <UserRoute>
+      {head()}
       <div className="container-fluid">
         <div className="row py-4 px-4">
           <div
@@ -102,7 +123,7 @@ const update = () => {
           }
         `}
       </style>
-    </>
+    </UserRoute>
   );
 };
 

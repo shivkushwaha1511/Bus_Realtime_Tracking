@@ -6,6 +6,7 @@ import AuthForm from "../components/form/AuthForm";
 import { toast } from "react-toastify";
 import { UserContext } from "../context";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -50,8 +51,27 @@ const SignUp = () => {
     }
   };
 
+  const head = () => (
+    <Head>
+      <title>Realtime Bus Tracking-Signup</title>
+      <meta name="description" content="Track your bus location in realtime" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="realtime-bus-tracking" />
+      <meta property="og:url" content={process.env.NEXT_PUBLIC_CLIENT} />
+      <meta
+        property="og:description"
+        content="Track your bus location in realtime"
+      />
+      <meta
+        property="og:image:secure_url"
+        content={`${process.env.NEXT_PUBLIC_CLIENT}/images/school_bus.jpg`}
+      />
+    </Head>
+  );
+
   return (
     <>
+      {head()}
       <div className="container-fluid form">
         <div className="row py-4 px-4">
           <div

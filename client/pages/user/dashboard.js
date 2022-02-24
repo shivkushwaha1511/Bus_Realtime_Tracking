@@ -2,6 +2,7 @@ import { useState } from "react";
 import UserRoute from "../../components/routes/UserRoute";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Head from "next/head";
 
 const dashboard = ({ data }) => {
   const [bus, setBus] = useState(data[0].busNo);
@@ -12,9 +13,28 @@ const dashboard = ({ data }) => {
     router.push(`/user/bus/${bus}`);
   };
 
+  const head = () => (
+    <Head>
+      <title>Realtime Bus Tracking-Dashboard</title>
+      <meta name="description" content="Track your bus location in realtime" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="realtime-bus-tracking" />
+      <meta property="og:url" content={process.env.NEXT_PUBLIC_CLIENT} />
+      <meta
+        property="og:description"
+        content="Track your bus location in realtime"
+      />
+      <meta
+        property="og:image:secure_url"
+        content={`${process.env.NEXT_PUBLIC_CLIENT}/images/school_bus.jpg`}
+      />
+    </Head>
+  );
+
   return (
     <>
       <UserRoute>
+        {head()}
         <div className="container-fluid">
           <div className="row" style={{ paddingTop: "150px" }}>
             <div className="col-md-6 offset-md-3 px-5">

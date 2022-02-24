@@ -12,6 +12,7 @@ const app = express();
 // Socket.io setup
 const http = require("http").createServer(app);
 const io = require("socket.io")(http, {
+  path: "/socket.io",
   cors: {
     methods: ["GET", "POST"],
     allowHeaders: ["content-type"],
